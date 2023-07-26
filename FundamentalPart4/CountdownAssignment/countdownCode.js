@@ -18,7 +18,6 @@ btn.addEventListener("click", () => {
     }
     const output = document.getElementById("output")
     output.appendChild(para);
-    console.log(para)
 
 
 
