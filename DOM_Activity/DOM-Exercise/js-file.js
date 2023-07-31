@@ -1,5 +1,4 @@
 const container = document.getElementById('container')
-
 const paragraph = document.createElement('p')
 const header3 = document.createElement('h3')
 const div = document.createElement('div')
