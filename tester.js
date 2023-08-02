@@ -1,28 +1,31 @@
- function dog (word) {
-    let initialWord = ""
-    for(let i = 0; i < word.length; i++) {
-        let tempChar = word[i].charCodeAt(0);
-        if( (tempChar >= 65 && tempChar <= 90) || (tempChar >= 97 && tempChar <= 122) || (tempChar >= 48 && tempChar <= 57)) {
-            initialWord += word[i]
+function dog (initialNum) {
+    let num = Number(initialNum)
+    let num0 = 0
+    let num1 = 1
+    let finalNum = 0;
+    if (initialNum == 0) {
+        return num0
+    }
+    else if (initialNum == 1) {
+        return num1
+    }
+    else{
+    for(let i =2; i <= initialNum; i++) {        
+        if(i % 2 == 0 || i ==0) {
+            num0 += num1
+            if(i == initialNum) {
+                finalNum = num0
+                return "dog"
+            }
+        }
+        else {
+            num1 += num0
+            if(i == initialNum) {
+                finalNum = num1
+                return "cat"
+            }
         }
     }
-    middleWord = initialWord.toLowerCase()
-    let finalWord = ""
-    for(let i = middleWord.length-1; i >= 0; i--) {
-        if(i === 0) {
-            finalWord+=middleWord[i].toLowerCase()
-        }
-
-        else{
-        finalWord+=middleWord[i]
-        }
-    }
-    console.log(finalWord)
-    if(middleWord == finalWord) {
-        return true
-    }
-    else {
-        return false
-    }
+}
 };
-console.log(dog("r3ace3car"))
+console.log(dog(4))
