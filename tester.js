@@ -1,31 +1,36 @@
-function dog (initialNum) {
-    let num = Number(initialNum)
-    let num0 = 0
-    let num1 = 1
-    let finalNum = 0;
-    if (initialNum == 0) {
-        return num0
-    }
-    else if (initialNum == 1) {
-        return num1
-    }
-    else{
-    for(let i =2; i <= initialNum; i++) {        
-        if(i % 2 == 0 || i ==0) {
-            num0 += num1
-            if(i == initialNum) {
-                finalNum = num0
-                return "dog"
-            }
-        }
+function dog (object) {
+    let oldestAge = 0;
+    let oldestPerson = ""
+    let age =0
+    for(let i =0; i < object.length; i++) {
+        if ("yearOfDeath" in object[i]) {
+            age = object[i].yearOfDeath - object[i].yearOfBirth
+        }       
         else {
-            num1 += num0
-            if(i == initialNum) {
-                finalNum = num1
-                return "cat"
-            }
+            age = 2023 - object[i].yearOfBirth
+        }
+    
+        if(oldestAge < age) {
+            oldestAge = age
+            oldestPerson = object[i].name
         }
     }
-}
+return oldestPerson
 };
-console.log(dog(4))
+const people = [
+    {
+      name: "Carly",
+      yearOfBirth: 1066,
+    },
+    {
+      name: "Ray",
+      yearOfBirth: 1962,
+      yearOfDeath: 2011,
+    },
+    {
+      name: "Jane",
+      yearOfBirth: 1912,
+      yearOfDeath: 1941,
+    },
+  ]
+  console.log(dog(people))
