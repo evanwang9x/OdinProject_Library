@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<script src ="script.js" async></script>
+<link rel= "stylesheet" href ="styles.css">
+<body class = "body">
+
+<div class = "header">
+<h1>Calculator</h1>
+</div>
+<div class = "mainCalculatorLayout">
+    <div class = "secondaryLayout">
+            <h1 id = "displayValue" class = "secondaryText"></h1>
+    </div>
+
+    <div class = "thirdLayout">
+            <button onclick = "clearDisplay()" class = "thirdLayoutV1">CLEAR</button>
+            <button class = "thirdLayoutV2">DELETE ALL</button>
+    </div>
+    <div class = "rowsLayout">
+        <button onclick = "buttonOnclick(7)" class ="buttonSpacing">7</button>
+        <button onclick = "buttonOnclick(8)" class ="buttonSpacing">8</button>
+        <button onclick = "buttonOnclick(9)"  class ="buttonSpacing">9</button>
+        <button onclick = "operation(`/`)"  class ="buttonSpacing">÷</button>
+    </div>
+    <div class = "rowsLayout">
+        <button onclick = "buttonOnclick(4)"  class ="buttonSpacing">4</button>
+        <button onclick = "buttonOnclick(5)"  class ="buttonSpacing">5</button>
+        <button onclick = "buttonOnclick(6)"  class ="buttonSpacing">6</button>
+        <button onclick = "operation(`x`)"  class ="buttonSpacing">x</button>
+    </div>
+    <div class = "rowsLayout">
+        <button onclick = "buttonOnclick(1)"class ="buttonSpacing">1</button>
+        <button onclick = "buttonOnclick(2)"class ="buttonSpacing">2</button>
+        <button onclick = "buttonOnclick(3)"class ="buttonSpacing">3</button>
+        <button onclick = "operation(`-`)"class ="buttonSpacing">-</button>
+    </div>
+    <div class = "rowsLayout">
+        <button onclick = "buttonOnclick(`.`)" class ="buttonSpacing">.</button>
+        <button onclick = "buttonOnclick(0)" class ="buttonSpacing">0</button>
+        <button onclick = "equals()" class ="buttonSpacing">=</button>
+        <button onclick = "operation(`+`)" class ="buttonSpacing">+</button>
+    </div>
+
+
+
+</div>
+
+
+</body>
