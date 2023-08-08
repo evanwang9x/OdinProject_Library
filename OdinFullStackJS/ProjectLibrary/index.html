@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <script src="projectLibrary.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body">
+
+  <div class="headerBar">
+    <h1 class="firstHeader">Book Library</h1>
+    <button id="headerButton" class="loginButton">Log In</button>
+  </div>
+
+  <div class="mainContentSection" id = "mainContentSection">
+    <div class="addBookButtonDiv">
+      <button id="showBookButton" class="addBookButton">+ Add Book</button>
+    </div>
+    <div class="bookStorage">
+    </div>
+  </div>
+
+  <div id="overlay" class = "overlay"></div>
+
+  <form id="myForm" class="hiddenForm">
+    <h1>Add New Book</h1>
+    <input placeholder="Title" type="text" id="bookName">
+    <input placeholder="Author" type="text" id="bookAuthor">
+    <input placeholder="Pages" type="number" id="bookPages">
+    <div class="hiddenFormContainer">
+      <h2>Have you read it?</h2>
+      <input type="checkbox" id="bookread">
+    </div>
+    <input type = "submit" value = "submit">
+  </form>
+
+
+
+</body>
+</html>

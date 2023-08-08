@@ -1,0 +1,165 @@
+.body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: beige;
+}
+.headerBar{
+    width: 100%;
+    background-color: white;
+    margin: 0;
+    height: 15%;
+    display: flex;
+}
+.firstHeader{
+    text-align: left;
+    margin-left: 6vh;
+}
+.loginButton{
+    text-align: right;
+    margin-left: auto;
+    margin-right: 15vh;
+    height: 6vh;
+    width: 15vh;
+    align-self: center;
+    border-radius: 5px;
+    border: 2px solid black;
+    text-align: center;
+}
+.loginButton:hover{
+    background-color: rgb(215,215,215);
+}
+.mainContentSection{
+    width: 100%;
+    height: 85%;
+}
+.addBookButtonDiv{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+.addBookButton{
+    background-color: beige;
+    height: 10vh;
+    width: 25vh;
+    text-align: center;
+    margin-top: 2vh;
+    border: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+.addBookButton:hover{
+    background-color: rgb(215,215,215);
+}
+.hiddenForm{
+    display: none;    
+    position: absolute;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 50vh;
+    height: 55vh;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.hiddenForm h1{
+    text-align: center;
+}
+.hiddenForm h2{
+    text-align: left;
+    margin-left: 15%;
+}
+.hiddenFormContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+.hiddenForm input{
+    height: 7%;
+    width: 80%;
+    margin-bottom: 10%;
+}
+#bookread{
+    appearance: none;
+    height: 5vh;
+    width: 5vh;
+    border: 1px solid #000;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 5%;
+}
+#bookread::before {
+    content: '';
+    position: relative;
+    top: 3%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 80%;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: none;
+    justify-content: center;
+  }
+  
+  #bookread:checked::before {
+    display: block;
+  }
+
+#overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0.5,0.5,0.5);
+    z-index: 9999;
+}
+
+.newDivDisplay{
+    background-color: white;
+    width: 25%;
+    height: 35%;
+    justify-content: center;
+    text-align: center;
+    display: inline-block;
+    margin-left: 6.25%;
+    margin-bottom: 2%;
+}
+.newSubmitButtonRead{
+    width: 80%;
+    height: 25%;
+    background-color: aquamarine;
+    margin-bottom: 5%;
+    border-radius: 4px;
+}
+.newSubmitButtonRead:hover{
+    background-color: hsl(160, 60%, 70%)
+}
+
+.newSubmitButtonNotRead{
+    width: 80%;
+    height: 25%;
+    background-color:rgb(216,37,37);
+    margin-bottom: 5%;
+    border-radius: 4px;
+}
+.newSubmitButtonNotRead:hover{
+    background-color: rgb(217,145,142);
+}
+.removeButtonStyle{
+    width: 80%;
+    height: 25%;
+    background-color: gray;
+    border-radius: 4px;
+}
+.removeButtonStyle:hover{
+    background-color: rgb(215,215,215)
+}

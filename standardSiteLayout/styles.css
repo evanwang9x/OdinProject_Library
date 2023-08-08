@@ -1,0 +1,31 @@
+.body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: beige;
+}
+.headerBar{
+    width: 100%;
+    background-color: white;
+    margin: 0;
+    height: 15%;
+    display: flex;
+}
+.firstHeader{
+    text-align: left;
+    margin-left: 6vh;
+}
+.loginButton{
+    text-align: right;
+    margin-left: auto;
+    margin-right: 15vh;
+    height: 6vh;
+    width: 15vh;
+    align-self: center;
+    border-radius: 5px;
+    border: 2px solid black;
+    text-align: center;
+}
+.loginButton:hover{
+    background-color: rgb(215,215,215);
+}
