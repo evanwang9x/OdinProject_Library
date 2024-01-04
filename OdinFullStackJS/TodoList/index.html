@@ -2,6 +2,8 @@
 <html lang="en-us">
 
 <link rel= "stylesheet" href ="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <body class = "body">
 <div class = "headerBar">
 <h1 class  ="firstHeader">Todo List</h1>
@@ -20,17 +22,41 @@
         <button class = "leftHandButtons" id=button4>Add Projects</button>
     </div>
 </div>
-    <div class = "rightHandContainer">
-        <h1 class = "secondPanelDisplay">Inbox</h1>
-        <button>Add Task</button>
-    </div>
 
+    <div class = "rightHandContainer" id = "rightHandContainer">
+            
+        <h1 class = "secondPanelDisplay">Inbox</h1>
+        <form class="createTaskPanelStyles" id="createTaskPanel">
+            <h1>Add Task</h1><br>
+            <input id="toDoTitle" type="text" class="titleInputStyle" placeholder="Title: Pay Bills" required>
+            <input id="toDoDetails" type="text" class="detailInputStyle" placeholder="Details: Phone, rent, child support (optional)">
+            
+            <div class="date-input-container">
+                <input type="date" id="myDateInput" class="date-input">
+                <label for="myDateInput" class="calendar-icon"><i class="fas fa-calendar-alt"></i></label>
+            </div>
+            <button type="submit" id="addToDo" class="addToDoButton">Add To Do</button>
+        </form>
+        
+
+ 
+
+        <div class = "taskHolders" id = "parentDiv">
+            <button class = "AddTask" id = addTask>Add Task</button>
+        </div>
+
+
+    </div>
 
 </div>
 
 
 
 
-<script src ="projectLibrary.js" async></script>
+
+
+
+
+<script src ="projectLibrary.js" defer></script>
 
 </body>
