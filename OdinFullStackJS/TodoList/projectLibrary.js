@@ -38,6 +38,21 @@ addTask.addEventListener('click', function() {
     addTask.style.display = 'none';
     createTaskPanel.style.display = "block"
 })  
+function dateSimplifier(dateString){
+    if(dateString == "") {
+        return ``
+    }
+    else {
+    const date = new Date(dateString)
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const suffix = ["th", "st", "nd", "rd"][
+        day % 10 > 3 ? 0 : (day % 100 - day % 10 != 10) * day % 10
+    ];
+    return `${monthNames[monthIndex]} ${day}${suffix}`;
+}
+}
 panelAddTask.addEventListener('click', function(){
     createTaskPanel.style.display = "none"
     addTask.style.display = "block"
@@ -59,7 +74,8 @@ panelAddTask.addEventListener('click', function(){
 
     var secondHeader1 = document.createElement('h1')
     secondHeader1.className = "dateButton"
-    secondHeader1.textContent = userDate
+    secondHeader1.textContent = dateSimplifier(userDate)
+
 
     var editButton = document.createElement("button")
     editButton.className = "editButton"

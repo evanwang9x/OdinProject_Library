@@ -130,7 +130,7 @@
     font-size: 20px; 
 }
 .newDivStyle{
-    width: 80%;
+    width: 55vw;
     height: 6vh;
     background-color: aqua;
     margin-left: 7vw;
@@ -146,14 +146,24 @@
     margin-left: 1.5vw;
 }
 .details{
-    margin-left: 27vw;
+    margin-left: 25vw;
+    width: 5vw;
+    height: 3vh;
+    color:  #008B8B;
+    border-radius: 0.1vw;
+}
+.details:hover{
+    background-color: #008B8B;
+    color: #FFFFFF;
 }
 .dateButton{
     margin-left: 1.5vw;
+    font-size: 1em;
 }
 .editButton{
     margin-left: 1.5vw;
 }
 .deleteButton{
     margin-left: 1.5vw;
+    width: 5vw;
 }
