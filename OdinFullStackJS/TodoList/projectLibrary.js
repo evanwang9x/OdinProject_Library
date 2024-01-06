@@ -68,6 +68,7 @@ panelAddTask.addEventListener('click', function(){
     var checkbox = document.createElement("input");
     checkbox.type = 'checkbox';
     checkbox.className = "completionCheckMark"
+    titleContainerLeft.appendChild(checkbox)
 
     var header1 = document.createElement('h1')
     header1.className = "titleName"

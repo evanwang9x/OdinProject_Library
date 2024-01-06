@@ -159,16 +159,21 @@
     font-size: 1em;
 }
 .titleContainerLeft{
-    width: 70%;
+    width: 63%;
     height: 100%;
     margin: 0;
     overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    align-items: center;
 }
 .detailDateEditDeleteContainer{
-    width: 30%;
+    width: 37%;
     height: 100%;
     margin: 0;
-    display: block;
+    display: flex;
+    align-items: center;
 }
 .details{
     color:  #008B8B;
@@ -177,21 +182,25 @@
     border-radius: 0.5vw;
     border-width: 0.1vw;
     overflow: hidden;
-    position: relative;
-    margin-right: 5vw;
+    position: fixed;
+    margin-left: 1.2vw;
 }
 .details:hover{
     background-color: #008B8B;
     color: #FFFFFF;
 }
 .dateButton{
-    margin-right: 3vw;
     font-size: 1em;
     overflow: hidden;
+    margin-left: 1vw;
+    position: fixed;
+    margin-left: 7vw;
 }
 .editButton{
     border-radius: 0.5vw;
+    position: fixed;
     border-width: 0.1vw;
+    margin-left: 13vw;
 }
 .editButtonImage {
     width: 1vw;
@@ -200,6 +209,8 @@
 .deleteButton{
     border-radius: 0.5vw;
     border-width: 0.1vw;
+    position: fixed;
+    margin-left: 16vw;
 }
 .deleteButtonImage{
     width: 1vw;
