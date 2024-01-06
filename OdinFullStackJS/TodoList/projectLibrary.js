@@ -3,7 +3,7 @@ const buttons = document.querySelectorAll('.leftHandButtons', ".selectedButton")
 const addTask = document.getElementById("addTask")
 const createTaskPanel = document.getElementById("createTaskPanel")
 const panelAddTask = document.getElementById("addToDo")
-const rightHandContainer = document.getElementById("rightHandContainer")
+const newTaskHolder = document.getElementById("newTaskHolder")
 
 
 window.onload = function(){
@@ -60,6 +60,11 @@ panelAddTask.addEventListener('click', function(){
     var toDoDetails = document.getElementById("toDoDetails").value;
     var userDate = document.getElementById("myDateInput").value
 
+    var titleContainerLeft = document.createElement("div")
+    titleContainerLeft.className = "titleContainerLeft"
+    var detailDateEditDeleteContainer = document.createElement("div")
+    detailDateEditDeleteContainer.className = "detailDateEditDeleteContainer"
+
     var checkbox = document.createElement("input");
     checkbox.type = 'checkbox';
     checkbox.className = "completionCheckMark"
@@ -67,32 +72,40 @@ panelAddTask.addEventListener('click', function(){
     var header1 = document.createElement('h1')
     header1.className = "titleName"
     header1.textContent = toDoTitle
+    titleContainerLeft.appendChild(header1)
 
     var detailButton = document.createElement('button')
     detailButton.className = "details"
     detailButton.textContent = "Details"
+    detailDateEditDeleteContainer.appendChild(detailButton)
 
     var secondHeader1 = document.createElement('h1')
     secondHeader1.className = "dateButton"
     secondHeader1.textContent = dateSimplifier(userDate)
+    detailDateEditDeleteContainer.appendChild(secondHeader1)
 
 
     var editButton = document.createElement("button")
     editButton.className = "editButton"
-    editButton.textContent = "Edit"
+
+    var editImg = document.createElement("img")
+    editImg.src = "photos//EditButton.png"
+    editImg.className = "editButtonImage"
+    editButton.append(editImg)
+    detailDateEditDeleteContainer.appendChild(editButton)
 
     var deleteButton = document.createElement("button")
     deleteButton.className = "deleteButton"
-    deleteButton.textContent = "Delete"
+    var deleteImg = document.createElement("img")
+    deleteImg.src = "photos//Delete.png"
+    deleteImg.className = "deleteButtonImage"
+    deleteButton.append(deleteImg)
+    detailDateEditDeleteContainer.appendChild(deleteButton)
 
     var newDiv = document.createElement('div');
     newDiv.className = "newDivStyle"
-    newDiv.appendChild(checkbox)
-    newDiv.appendChild(header1)
-    newDiv.appendChild(detailButton)
-    newDiv.appendChild(secondHeader1)
-    newDiv.appendChild(editButton)
-    newDiv.appendChild(deleteButton)
-    rightHandContainer.appendChild(newDiv)
+    newDiv.appendChild(titleContainerLeft)
+    newDiv.appendChild(detailDateEditDeleteContainer)
+    newTaskHolder.appendChild(newDiv)
 })
 

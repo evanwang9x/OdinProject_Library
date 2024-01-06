@@ -1,8 +1,8 @@
 .body{
     width: 100%;
-    height: 100vh;
+    height: auto;
     margin: 0;
-    background-color: beige;
+    background-color: rgb(215,215,215);
 }
 .headerBar{
     width: 100%;
@@ -30,7 +30,7 @@
     background-color: rgb(215,215,215);
 }
 .mainBodyContainer{
-    height: 85%;
+    height: auto;
     width: 100%;
     display: flex;
 }
@@ -38,14 +38,16 @@
     background-color: rgb(221,221,221);
     float: left;
     width: 30%;
-    height: 100%;
+    height: auto;
+    min-height: 85vh;
 
 }
 .rightHandContainer{
     background-color: rgb(238,238,238);
     width: 70%;
-    height: 100%;
+    height: auto;
     justify-content: center;
+    min-height: 85vh;
 }
 .leftHandButtons{
     background-color: rgb(221,221,221);
@@ -86,7 +88,9 @@
 }
 .AddTask{
     width: 50vw;
-    height: 4vh;
+    height: 5vh;
+    justify-content: center;
+    margin-top: 1.6vh;
 }
 .createTaskPanelStyles{
     width: 65vw;
@@ -130,40 +134,81 @@
     font-size: 20px; 
 }
 .newDivStyle{
-    width: 55vw;
-    height: 6vh;
+    width: 50vw;
+    height: 5vh;
     background-color: aqua;
-    margin-left: 7vw;
     display: flex;
     align-items: center;
-    
+    margin-top: 1.6vh;
+    justify-content: space-between;
+    padding: 0 1.5vw;
 }
 .completionCheckMark{
     width: 2.5vh;
     height: 2.5vh;
 }
 .titleName{
-    margin-left: 1.5vw;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 1.2vw;
+    overflow: hidden;
+    font-size: 1em;
+}
+.titleContainerLeft{
+    width: 70%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+.detailDateEditDeleteContainer{
+    width: 30%;
+    height: 100%;
+    margin: 0;
+    display: block;
 }
 .details{
-    margin-left: 25vw;
+    color:  #008B8B;
     width: 5vw;
     height: 3vh;
-    color:  #008B8B;
-    border-radius: 0.1vw;
+    border-radius: 0.5vw;
+    border-width: 0.1vw;
+    overflow: hidden;
+    position: relative;
+    margin-right: 5vw;
 }
 .details:hover{
     background-color: #008B8B;
     color: #FFFFFF;
 }
 .dateButton{
-    margin-left: 1.5vw;
+    margin-right: 3vw;
     font-size: 1em;
+    overflow: hidden;
 }
 .editButton{
-    margin-left: 1.5vw;
+    border-radius: 0.5vw;
+    border-width: 0.1vw;
+}
+.editButtonImage {
+    width: 1vw;
+    height: 1vw;
 }
 .deleteButton{
-    margin-left: 1.5vw;
-    width: 5vw;
+    border-radius: 0.5vw;
+    border-width: 0.1vw;
+}
+.deleteButtonImage{
+    width: 1vw;
+    height: 1vw;
+}
+.newTaskHolder{
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

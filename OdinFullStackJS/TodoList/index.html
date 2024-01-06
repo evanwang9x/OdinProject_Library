@@ -28,7 +28,7 @@
         <h1 class = "secondPanelDisplay">Inbox</h1>
         <div class="createTaskPanelStyles" id="createTaskPanel">
             <h1>Add Task</h1><br>
-            <input id="toDoTitle" type="text" class="titleInputStyle" placeholder="Title: Pay Bills" >
+            <input id="toDoTitle" type="text" class="titleInputStyle" placeholder="Title: Pay Bills" maxlength="40">
             <input id="toDoDetails" type="text" class="detailInputStyle" placeholder="Details: Phone, rent, child support (optional)">
             
             <div class="date-input-container">
@@ -40,7 +40,9 @@
         
 
  
+        <div class = "newTaskHolder" id = "newTaskHolder">
 
+        </div>
         <div class = "taskHolders" id = "parentDiv">
             <button class = "AddTask" id = addTask>Add Task</button>
         </div>
