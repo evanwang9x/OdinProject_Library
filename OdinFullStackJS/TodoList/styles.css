@@ -182,39 +182,33 @@
     border-radius: 0.5vw;
     border-width: 0.1vw;
     overflow: hidden;
-    position: fixed;
-    margin-left: 1.2vw;
-}
+    margin-left: 0.7vw;
+}  
 .details:hover{
     background-color: #008B8B;
     color: #FFFFFF;
 }
 .dateButton{
     font-size: 1em;
+    width: 6.5vw;
+    height: 100%;
     overflow: hidden;
     margin-left: 1vw;
-    position: fixed;
-    margin-left: 7vw;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .editButton{
     border-radius: 0.5vw;
-    position: fixed;
     border-width: 0.1vw;
-    margin-left: 13vw;
-}
-.editButtonImage {
-    width: 1vw;
-    height: 1vw;
+    align-items: center;
+    margin-left: 1vw;
 }
 .deleteButton{
     border-radius: 0.5vw;
     border-width: 0.1vw;
-    position: fixed;
-    margin-left: 16vw;
-}
-.deleteButtonImage{
-    width: 1vw;
-    height: 1vw;
+    align-items: center;
+    margin-left: 1.5vw;
 }
 .newTaskHolder{
     height: auto;
@@ -223,3 +217,34 @@
     align-items: center;
     flex-direction: column;
 }
+.editButtonImage {
+    width: 1vw;
+    height: 1vw;
+}
+.deleteButtonImage{
+    width: 1vw;
+    height: 1vw;
+}
+.detailsContainer{
+    width: 35vw;
+    height: 20vh;
+    background-color: aquamarine;
+    z-index: 100;
+}
+.detailsContainer h1{
+    font-size: 2em;
+    margin-left: 0.89em;
+}
+.detail-description {
+    padding-left: 5em;
+    font-weight: 900;
+    font-weight: normal;
+  }
+
+  .detail-description::before {
+    position: absolute;
+    content: "Detail: ";
+    font-weight: 900;
+    margin-left: -3em;
+    display: inline-block;
+  }

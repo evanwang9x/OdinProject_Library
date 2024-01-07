@@ -5,7 +5,6 @@ const createTaskPanel = document.getElementById("createTaskPanel")
 const panelAddTask = document.getElementById("addToDo")
 const newTaskHolder = document.getElementById("newTaskHolder")
 
-
 window.onload = function(){
     button1.classList.remove("leftHandButtons")
     button1.classList.add("selectedButton")
@@ -77,12 +76,19 @@ panelAddTask.addEventListener('click', function(){
 
     var detailButton = document.createElement('button')
     detailButton.className = "details"
+    detailButton.id = "detailsButton"
     detailButton.textContent = "Details"
     detailDateEditDeleteContainer.appendChild(detailButton)
 
     var secondHeader1 = document.createElement('h1')
     secondHeader1.className = "dateButton"
-    secondHeader1.textContent = dateSimplifier(userDate)
+    if(userDate == "") {
+        secondHeader1.textContent = "No Due Date"
+    }
+    else{
+        this.style.marginLeft = 
+        secondHeader1.textContent = dateSimplifier(userDate)
+    }
     detailDateEditDeleteContainer.appendChild(secondHeader1)
 
 
@@ -100,6 +106,7 @@ panelAddTask.addEventListener('click', function(){
     var deleteImg = document.createElement("img")
     deleteImg.src = "photos//Delete.png"
     deleteImg.className = "deleteButtonImage"
+    deleteImg.id = "deleteButton"
     deleteButton.append(deleteImg)
     detailDateEditDeleteContainer.appendChild(deleteButton)
 
@@ -108,5 +115,13 @@ panelAddTask.addEventListener('click', function(){
     newDiv.appendChild(titleContainerLeft)
     newDiv.appendChild(detailDateEditDeleteContainer)
     newTaskHolder.appendChild(newDiv)
-})
 
+    deleteButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        newDiv.remove();
+    });
+    detailsButton.addEventListener('click', function(event){
+        event.stopPropagation();
+        alert("ChezBumbger")
+    })
+})
