@@ -4,12 +4,11 @@ const addTask = document.getElementById("addTask")
 const createTaskPanel = document.getElementById("createTaskPanel")
 const panelAddTask = document.getElementById("addToDo")
 const newTaskHolder = document.getElementById("newTaskHolder")
-
+var tasks = {};
 window.onload = function(){
     button1.classList.remove("leftHandButtons")
     button1.classList.add("selectedButton")
 }
-
 headButton.addEventListener('click', function() {
     window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
 })
@@ -33,11 +32,12 @@ buttons.forEach(button => {
         this.classList.add("selectedButton")
     })
 })
-addTask.addEventListener('click', function() {
+addTask.addEventListener('click', function() { //This part is the button in the create task menu used to actually create the task.
     addTask.style.display = 'none';
     createTaskPanel.style.display = "block"
 })  
-function dateSimplifier(dateString){
+
+function dateSimplifier(dateString){ //This is used to shorten the date from 06/04/2023 to June 4th
     if(dateString == "") {
         return ``
     }
@@ -59,6 +59,9 @@ panelAddTask.addEventListener('click', function(){
     var toDoDetails = document.getElementById("toDoDetails").value;
     var userDate = document.getElementById("myDateInput").value
 
+    var taskID = createUniqueId();
+    newDiv.dataset.taskID = taskID
+
     var titleContainerLeft = document.createElement("div")
     titleContainerLeft.className = "titleContainerLeft"
     var detailDateEditDeleteContainer = document.createElement("div")
@@ -76,7 +79,7 @@ panelAddTask.addEventListener('click', function(){
 
     var detailButton = document.createElement('button')
     detailButton.className = "details"
-    detailButton.id = "detailsButton"
+    detailButton.id = "detailButton"
     detailButton.textContent = "Details"
     detailDateEditDeleteContainer.appendChild(detailButton)
 
@@ -110,18 +113,55 @@ panelAddTask.addEventListener('click', function(){
     deleteButton.append(deleteImg)
     detailDateEditDeleteContainer.appendChild(deleteButton)
 
+    var detailsContainer = document.createElement("div")
+    detailsContainer.className = "detailsContainer"
+
+    var detailsTitle = document.createElement("h1")
+    detailsTitle.textContent = toDoTitle
+    var detailsDescription = document.createElement("p")
+    var closeOut = document.createElement("img")
+    closeOut.src = "photos//closeout.png"
+    closeOut.className = "closeOutImage"
+    detailsContainer.appendChild(closeOut)
+    detailsDescription.textContent = toDoDetails
+    detailsDescription.className = "detail-description"
+    detailsContainer.appendChild(detailsTitle)
+    detailsContainer.appendChild(detailsDescription)
+
+
     var newDiv = document.createElement('div');
     newDiv.className = "newDivStyle"
     newDiv.appendChild(titleContainerLeft)
     newDiv.appendChild(detailDateEditDeleteContainer)
     newTaskHolder.appendChild(newDiv)
+    newTaskHolder.appendChild(detailsContainer)
 
-    deleteButton.addEventListener('click', function(event) {
-        event.stopPropagation();
-        newDiv.remove();
-    });
-    detailsButton.addEventListener('click', function(event){
-        event.stopPropagation();
-        alert("ChezBumbger")
-    })
+    document.getElementById("toDoTitle").value = '';
+    document.getElementById("toDoDetails").value = '';
+    document.getElementById("myDateInput").value = '';
+
+
+closeOut.addEventListener('click', function(event) {
+    event.stopPropagation();
+    detailsContainer.style.display = "none"
 })
+detailButton.addEventListener('click', function(event){
+    event.stopPropagation();
+    detailsContainer.style.display = "block"
+}) 
+deleteButton.addEventListener('click', function(event) {
+    event.stopPropagation();
+    newDiv.remove();
+});
+editButton.addEventListener('click', function(event){
+    event.stopPropagation
+    createTaskPanel.style.display = "block"
+    addTask.style.display = "none"
+
+})
+    
+})
+
+
+
+

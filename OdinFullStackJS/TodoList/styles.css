@@ -230,6 +230,7 @@
     height: 20vh;
     background-color: aquamarine;
     z-index: 100;
+    display: none;
 }
 .detailsContainer h1{
     font-size: 2em;
@@ -247,4 +248,12 @@
     font-weight: 900;
     margin-left: -3em;
     display: inline-block;
+  }
+  .closeOutImage{
+    width: 2vw;
+    height: 2vh;
+    justify-content: right;
+  }
+  .closeOutImage:hover{
+    cursor: pointer;
   }
