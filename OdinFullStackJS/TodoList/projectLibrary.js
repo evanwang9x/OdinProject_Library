@@ -5,6 +5,9 @@ const createTaskPanel = document.getElementById("createTaskPanel")
 const panelAddTask = document.getElementById("addToDo")
 const newTaskHolder = document.getElementById("newTaskHolder")
 const editToDo = document.getElementById("editToDo")
+const todayButton = document.getElementById("todayButton")
+const weekButton = document.getElementById("weekButton")
+
 var tasks = {};
 window.onload = function(){
     button1.classList.remove("leftHandButtons")
@@ -206,6 +209,9 @@ editButton.addEventListener('click', function(event){
         document.getElementById("toDoDetails").value = '';
         document.getElementById("myDateInput").value = '';
     })
+})
+todayButton.addEventListener("click", function() {
+    
 })
 
 
