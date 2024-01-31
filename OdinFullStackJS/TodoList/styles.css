@@ -112,7 +112,12 @@
 }
 .addToDoButton{
     width: 12vw;
-    height: 4vh
+    height: 4vh;
+}
+.editToDoButton{
+    width: 12vw;
+    height: 4vh;
+    display: none;
 }
 .date-input-container {
     position: relative;

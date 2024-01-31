@@ -4,10 +4,14 @@ const addTask = document.getElementById("addTask")
 const createTaskPanel = document.getElementById("createTaskPanel")
 const panelAddTask = document.getElementById("addToDo")
 const newTaskHolder = document.getElementById("newTaskHolder")
+const editToDo = document.getElementById("editToDo")
 var tasks = {};
 window.onload = function(){
     button1.classList.remove("leftHandButtons")
     button1.classList.add("selectedButton")
+}
+function createUniqueID() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 headButton.addEventListener('click', function() {
     window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
@@ -36,13 +40,15 @@ addTask.addEventListener('click', function() { //This part is the button in the 
     addTask.style.display = 'none';
     createTaskPanel.style.display = "block"
 })  
-
 function dateSimplifier(dateString){ //This is used to shorten the date from 06/04/2023 to June 4th
     if(dateString == "") {
         return ``
     }
+
     else {
     const date = new Date(dateString)
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const day = date.getDate();
     const monthIndex = date.getMonth();
@@ -59,8 +65,7 @@ panelAddTask.addEventListener('click', function(){
     var toDoDetails = document.getElementById("toDoDetails").value;
     var userDate = document.getElementById("myDateInput").value
 
-    var taskID = createUniqueId();
-    newDiv.dataset.taskID = taskID
+
 
     var titleContainerLeft = document.createElement("div")
     titleContainerLeft.className = "titleContainerLeft"
@@ -89,7 +94,6 @@ panelAddTask.addEventListener('click', function(){
         secondHeader1.textContent = "No Due Date"
     }
     else{
-        this.style.marginLeft = 
         secondHeader1.textContent = dateSimplifier(userDate)
     }
     detailDateEditDeleteContainer.appendChild(secondHeader1)
@@ -97,6 +101,7 @@ panelAddTask.addEventListener('click', function(){
 
     var editButton = document.createElement("button")
     editButton.className = "editButton"
+    editButton.id = "editButton"
 
     var editImg = document.createElement("img")
     editImg.src = "photos//EditButton.png"
@@ -136,6 +141,14 @@ panelAddTask.addEventListener('click', function(){
     newTaskHolder.appendChild(newDiv)
     newTaskHolder.appendChild(detailsContainer)
 
+    var taskId = createUniqueID();
+    newDiv.dataset.taskId = taskId
+    tasks[taskId] = {
+        title: toDoTitle,
+        details: toDoDetails,
+        date: userDate
+    }
+
     document.getElementById("toDoTitle").value = '';
     document.getElementById("toDoDetails").value = '';
     document.getElementById("myDateInput").value = '';
@@ -152,16 +165,48 @@ detailButton.addEventListener('click', function(event){
 deleteButton.addEventListener('click', function(event) {
     event.stopPropagation();
     newDiv.remove();
-});
+});    
 editButton.addEventListener('click', function(event){
     event.stopPropagation
+    var taskId = this.closest('.newDivStyle').dataset.taskId;
+
+    document.getElementById("toDoTitle").value = tasks[taskId].title;
+    document.getElementById("toDoDetails").value = tasks[taskId].details;
+    document.getElementById("myDateInput").value = tasks[taskId].date;
+
     createTaskPanel.style.display = "block"
     addTask.style.display = "none"
+    document.getElementById('addToDo').style.display = 'none';
+    document.getElementById('editToDo').style.display = 'block';})
 
-})
-    
-})
+    editToDo.addEventListener("click",function() {
+        var updatedTitle = document.getElementById("toDoTitle").value;
+        var updatedDetails = document.getElementById("toDoDetails").value;
+        var updatedDate = document.getElementById("myDateInput").value
+        tasks[taskId] = {
+            title: updatedTitle,
+            details: updatedDetails,
+            date: updatedDate
+        };
+        header1.textContent = updatedTitle;
+        detailsTitle.textContent = updatedTitle
+        detailsDescription.textContent = updatedDetails;
+        if(updatedDate == "") {
+            secondHeader1.textContent = "No Due Date"
+        }
+        else{
+            secondHeader1.textContent = dateSimplifier(updatedDate)
+        }
+        createTaskPanel.style.display = "none"
+        addTask.style.display = "block"
 
+        document.getElementById('addToDo').style.display = 'block';
+        document.getElementById('editToDo').style.display = 'none';
+        document.getElementById("toDoTitle").value = '';
+        document.getElementById("toDoDetails").value = '';
+        document.getElementById("myDateInput").value = '';
+    })
+})
 
 
 
