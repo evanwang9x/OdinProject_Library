@@ -5,6 +5,7 @@ const createTaskPanel = document.getElementById("createTaskPanel")
 const panelAddTask = document.getElementById("addToDo")
 const newTaskHolder = document.getElementById("newTaskHolder")
 const editToDo = document.getElementById("editToDo")
+const inboxButton = document.getElementById("button1")
 const todayButton = document.getElementById("todayButton")
 const weekButton = document.getElementById("weekButton")
 
@@ -67,8 +68,6 @@ panelAddTask.addEventListener('click', function(){
     var toDoTitle = document.getElementById("toDoTitle").value;
     var toDoDetails = document.getElementById("toDoDetails").value;
     var userDate = document.getElementById("myDateInput").value
-
-
 
     var titleContainerLeft = document.createElement("div")
     titleContainerLeft.className = "titleContainerLeft"
@@ -211,8 +210,48 @@ editButton.addEventListener('click', function(event){
     })
 })
 todayButton.addEventListener("click", function() {
-    
+    const today = new Date()
+    today.setHours(0,0,0,0)
+    for(let taskId in tasks){
+        const taskDate = new Date(tasks[taskId].date)
+        taskDate.setMinutes(taskDate.getMinutes() + taskDate.getTimezoneOffset());
+        const taskDiv = document.querySelector(`[data-task-id="${taskId}"]`);
+        if(taskDate.toDateString() != today.toDateString()) {
+            taskDiv.style.display = "none"
+        }
+        else{
+            taskDiv.style.display = "flex"
+        }
+    }
 })
+inboxButton.addEventListener("click", function() {
+    for(let taskId in tasks){
+        const taskDiv = document.querySelector(`[data-task-id="${taskId}"]`);
+            taskDiv.style.display = "flex"
+    }
+})
+weekButton.addEventListener("click", function() {
+    const today = new Date()
+    today.setHours(0,0,0,0)
+    const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); 
+    startOfWeek.setHours(0,0,0,0)
+    const endOfWeek = new Date(startOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000); 
 
+    for(let taskId in tasks){
+        const taskDate = new Date(tasks[taskId].date)
+        taskDate.setMinutes(taskDate.getMinutes() + taskDate.getTimezoneOffset());
 
+        if (taskDate >= startOfWeek && taskDate < endOfWeek) {
+            const taskDiv = document.querySelector(`[data-task-id="${taskId}"]`);
+            if (taskDiv) {
+                taskDiv.style.display = 'flex'; 
+            }
+        } else {
+            const taskDiv = document.querySelector(`[data-task-id="${taskId}"]`);
+            if (taskDiv) {
+                taskDiv.style.display = 'none'; 
+            }
+        }
+    }
+})
 
