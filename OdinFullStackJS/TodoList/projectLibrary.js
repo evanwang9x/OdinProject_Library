@@ -13,6 +13,13 @@ var tasks = {};
 window.onload = function(){
     button1.classList.remove("leftHandButtons")
     button1.classList.add("selectedButton")
+    var savedTasks = localStorage.getItem('tasks');
+    if(savedTasks) {
+        tasks = JSON.parse(savedTasks);
+        for(let taskId in tasks){
+
+        }
+    }
 }
 function createUniqueID() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
@@ -69,72 +76,31 @@ panelAddTask.addEventListener('click', function(){
     var toDoDetails = document.getElementById("toDoDetails").value;
     var userDate = document.getElementById("myDateInput").value
 
+    var detailButton = detailButtonCreation()
+    var editButton = editButtonCreation()
+    var header1 = titleNameCreation(toDoTitle)
+    var secondHeader1 = dateCreation(userDate)
+    var deleteButton = deleteButtonCreation()
+    var detailsContainer = detailsContainerCreation(toDoDetails)
+//Next 4 Lines are involved in detailsContainer, Taking a shortcut and not optimzing though.
+    var detailsContainer = detailsContainerCreation()
+    var closeOut = closeOutCreation()
+    var detailsTitle = detailsTitleCreation(toDoTitle)
+    var detailsDescription = detailsDescriptionCreation(toDoDetails)
+    detailsContainer.append(detailsTitle)
+    detailsContainer.append(detailsDescription)
+    detailsContainer.append(closeOut)
     var titleContainerLeft = document.createElement("div")
     titleContainerLeft.className = "titleContainerLeft"
     var detailDateEditDeleteContainer = document.createElement("div")
     detailDateEditDeleteContainer.className = "detailDateEditDeleteContainer"
 
-    var checkbox = document.createElement("input");
-    checkbox.type = 'checkbox';
-    checkbox.className = "completionCheckMark"
-    titleContainerLeft.appendChild(checkbox)
-
-    var header1 = document.createElement('h1')
-    header1.className = "titleName"
-    header1.textContent = toDoTitle
+    titleContainerLeft.appendChild(checkboxCreation())
     titleContainerLeft.appendChild(header1)
-
-    var detailButton = document.createElement('button')
-    detailButton.className = "details"
-    detailButton.id = "detailButton"
-    detailButton.textContent = "Details"
     detailDateEditDeleteContainer.appendChild(detailButton)
-
-    var secondHeader1 = document.createElement('h1')
-    secondHeader1.className = "dateButton"
-    if(userDate == "") {
-        secondHeader1.textContent = "No Due Date"
-    }
-    else{
-        secondHeader1.textContent = dateSimplifier(userDate)
-    }
     detailDateEditDeleteContainer.appendChild(secondHeader1)
-
-
-    var editButton = document.createElement("button")
-    editButton.className = "editButton"
-    editButton.id = "editButton"
-
-    var editImg = document.createElement("img")
-    editImg.src = "photos//EditButton.png"
-    editImg.className = "editButtonImage"
-    editButton.append(editImg)
     detailDateEditDeleteContainer.appendChild(editButton)
-
-    var deleteButton = document.createElement("button")
-    deleteButton.className = "deleteButton"
-    var deleteImg = document.createElement("img")
-    deleteImg.src = "photos//Delete.png"
-    deleteImg.className = "deleteButtonImage"
-    deleteImg.id = "deleteButton"
-    deleteButton.append(deleteImg)
     detailDateEditDeleteContainer.appendChild(deleteButton)
-
-    var detailsContainer = document.createElement("div")
-    detailsContainer.className = "detailsContainer"
-
-    var detailsTitle = document.createElement("h1")
-    detailsTitle.textContent = toDoTitle
-    var detailsDescription = document.createElement("p")
-    var closeOut = document.createElement("img")
-    closeOut.src = "photos//closeout.png"
-    closeOut.className = "closeOutImage"
-    detailsContainer.appendChild(closeOut)
-    detailsDescription.textContent = toDoDetails
-    detailsDescription.className = "detail-description"
-    detailsContainer.appendChild(detailsTitle)
-    detailsContainer.appendChild(detailsDescription)
-
 
     var newDiv = document.createElement('div');
     newDiv.className = "newDivStyle"
@@ -150,16 +116,12 @@ panelAddTask.addEventListener('click', function(){
         details: toDoDetails,
         date: userDate
     }
-
+    localStorage.setItem('tasks', JSON.stringify(tasks));
     document.getElementById("toDoTitle").value = '';
     document.getElementById("toDoDetails").value = '';
     document.getElementById("myDateInput").value = '';
 
 
-closeOut.addEventListener('click', function(event) {
-    event.stopPropagation();
-    detailsContainer.style.display = "none"
-})
 detailButton.addEventListener('click', function(event){
     event.stopPropagation();
     detailsContainer.style.display = "block"
@@ -168,6 +130,10 @@ deleteButton.addEventListener('click', function(event) {
     event.stopPropagation();
     newDiv.remove();
 });    
+closeOut.addEventListener('click', function(event) {
+    event.stopPropagation();
+    detailsContainer.style.display = "none"
+})
 editButton.addEventListener('click', function(event){
     event.stopPropagation
     var taskId = this.closest('.newDivStyle').dataset.taskId;
@@ -201,6 +167,7 @@ editButton.addEventListener('click', function(event){
         }
         createTaskPanel.style.display = "none"
         addTask.style.display = "block"
+        localStorage.setItem('tasks', JSON.stringify(tasks));
 
         document.getElementById('addToDo').style.display = 'block';
         document.getElementById('editToDo').style.display = 'none';
@@ -254,4 +221,76 @@ weekButton.addEventListener("click", function() {
         }
     }
 })
-
+function checkboxCreation(){
+    var checkbox = document.createElement("input");
+    checkbox.type = 'checkbox';
+    checkbox.className = "completionCheckMark"
+    return checkbox;
+}
+function titleNameCreation(toDoTitle){
+    var header1 = document.createElement('h1')
+    header1.className = "titleName"
+    header1.textContent = toDoTitle
+    return header1;
+}
+function detailButtonCreation(){
+    var detailButton = document.createElement('button')
+    detailButton.className = "details"
+    detailButton.id = "detailButton"
+    detailButton.textContent = "Details"
+    return detailButton;
+}
+function dateCreation(userDate){
+    var secondHeader1 = document.createElement('h1')
+    secondHeader1.className = "dateButton"
+    if(userDate == "") {
+        secondHeader1.textContent = "No Due Date"
+    }
+    else{
+        secondHeader1.textContent = dateSimplifier(userDate)
+    }
+    return secondHeader1;
+}
+function editButtonCreation(){
+    var editButton = document.createElement("button")
+    editButton.className = "editButton"
+    editButton.id = "editButton"
+    var editImg = document.createElement("img")
+    editImg.src = "photos//EditButton.png"
+    editImg.className = "editButtonImage"
+    editButton.append(editImg)
+    return editButton
+}
+function deleteButtonCreation() {
+    var deleteButton = document.createElement("button")
+    deleteButton.className = "deleteButton"
+    var deleteImg = document.createElement("img")
+    deleteImg.src = "photos//Delete.png"
+    deleteImg.className = "deleteButtonImage"
+    deleteImg.id = "deleteButton"
+    deleteButton.append(deleteImg)
+    return deleteButton
+}
+function detailsContainerCreation(){
+    var detailsContainer = document.createElement("div")
+    detailsContainer.className = "detailsContainer"
+    return detailsContainer
+}
+function closeOutCreation(){
+    var closeOut = document.createElement("img")
+    closeOut.src = "photos//closeout.png"
+    closeOut.className = "closeOutImage"
+    
+    return closeOut
+}
+function detailsTitleCreation(toDoTitle){
+    var detailsTitle = document.createElement("h1")
+    detailsTitle.textContent = toDoTitle
+    return detailsTitle
+}
+function detailsDescriptionCreation(toDoDetails){
+    var detailsDescription = document.createElement("p")
+    detailsDescription.textContent = toDoDetails
+    detailsDescription.className = "detail-description"
+    return detailsDescription
+}
