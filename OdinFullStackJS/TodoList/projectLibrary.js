@@ -10,13 +10,17 @@ const todayButton = document.getElementById("todayButton")
 const weekButton = document.getElementById("weekButton")
 
 var tasks = {};
+var taskId;
 window.onload = function(){
     button1.classList.remove("leftHandButtons")
     button1.classList.add("selectedButton")
     var savedTasks = localStorage.getItem('tasks');
-    if(savedTasks) {
+    console.log(savedTasks)
+    if (savedTasks) {
         tasks = JSON.parse(savedTasks);
         for(let taskId in tasks){
+        if(tasks[taskId].title !== undefined) {
+        console.log("Here is the task ID: " + tasks[taskId].title)
             var toDoTitle = tasks[taskId].title
             var toDoDetails = tasks[taskId].details
             var userDate = tasks[taskId].date
@@ -59,13 +63,15 @@ window.onload = function(){
             deleteButton.addEventListener('click', function(event) {
                 event.stopPropagation();
                 newDiv.remove();
-                var taskId = this.closest('.newDivStyle').dataset.taskId;
-                console.log("Deleting task with ID:", taskId);
-                console.log("Task before deletion:", tasks[taskId]);
-                delete tasks[taskId];;
-                console.log("Task after deletion:", taskId);
+                tasks[taskId] = {
+                    title: undefined,
+                    details: undefined,
+                    date: undefined
+                };
+                console.log(tasks[taskId].title);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
-            });    
+            });
+            
             closeOut.addEventListener('click', function(event) {
                 event.stopPropagation();
                 detailsContainer.style.display = "none"
@@ -115,10 +121,11 @@ window.onload = function(){
 
 
 
-
+            }
         }
     }
 }
+
 function createUniqueID() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
@@ -228,10 +235,15 @@ detailButton.addEventListener('click', function(event){
 deleteButton.addEventListener('click', function(event) {
     event.stopPropagation();
     newDiv.remove();
-    var taskId = this.closest('.newDivStyle').dataset.taskId;
-    delete tasks[taskId];;
-    localStorage.setItem('tasks', JSON.stringify(tasks))
-});    
+    tasks[taskId] = {
+        title: undefined,
+        details: undefined,
+        date: undefined
+    };
+    console.log(tasks[taskId].title);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+});
+
 
 closeOut.addEventListener('click', function(event) {
     event.stopPropagation();
