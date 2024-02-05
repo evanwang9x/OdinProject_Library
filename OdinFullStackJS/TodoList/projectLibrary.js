@@ -17,6 +17,104 @@ window.onload = function(){
     if(savedTasks) {
         tasks = JSON.parse(savedTasks);
         for(let taskId in tasks){
+            var toDoTitle = tasks[taskId].title
+            var toDoDetails = tasks[taskId].details
+            var userDate = tasks[taskId].date
+
+            var detailButton = detailButtonCreation()
+            var editButton = editButtonCreation()
+            var header1 = titleNameCreation(toDoTitle)
+            var secondHeader1 = dateCreation(userDate)
+            var deleteButton = deleteButtonCreation()
+            var detailsContainer = detailsContainerCreation(toDoDetails)
+            var detailsContainer = detailsContainerCreation()
+            var closeOut = closeOutCreation()
+            var detailsTitle = detailsTitleCreation(toDoTitle)
+            var detailsDescription = detailsDescriptionCreation(toDoDetails)
+            detailsContainer.append(detailsTitle)
+            detailsContainer.append(detailsDescription)
+            detailsContainer.append(closeOut)
+            var titleContainerLeft = document.createElement("div")
+            titleContainerLeft.className = "titleContainerLeft"
+            var detailDateEditDeleteContainer = document.createElement("div")
+            detailDateEditDeleteContainer.className = "detailDateEditDeleteContainer"
+        
+            titleContainerLeft.appendChild(checkboxCreation())
+            titleContainerLeft.appendChild(header1)
+            detailDateEditDeleteContainer.appendChild(detailButton)
+            detailDateEditDeleteContainer.appendChild(secondHeader1)
+            detailDateEditDeleteContainer.appendChild(editButton)
+            detailDateEditDeleteContainer.appendChild(deleteButton)
+            var newDiv = document.createElement('div');
+            newDiv.className = "newDivStyle"
+            newDiv.appendChild(titleContainerLeft)
+            newDiv.appendChild(detailDateEditDeleteContainer)
+            newTaskHolder.appendChild(newDiv)
+            newTaskHolder.appendChild(detailsContainer)
+            
+            detailButton.addEventListener('click', function(event){
+                event.stopPropagation();
+                detailsContainer.style.display = "block"
+            }) 
+            deleteButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                newDiv.remove();
+                var taskId = this.closest('.newDivStyle').dataset.taskId;
+                console.log("Deleting task with ID:", taskId);
+                console.log("Task before deletion:", tasks[taskId]);
+                delete tasks[taskId];;
+                console.log("Task after deletion:", taskId);
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            });    
+            closeOut.addEventListener('click', function(event) {
+                event.stopPropagation();
+                detailsContainer.style.display = "none"
+            })
+            editButton.addEventListener('click', function(event){
+                event.stopPropagation
+                var taskId = this.closest('.newDivStyle').dataset.taskId;
+            
+                document.getElementById("toDoTitle").value = tasks[taskId].title;
+                document.getElementById("toDoDetails").value = tasks[taskId].details;
+                document.getElementById("myDateInput").value = tasks[taskId].date;
+            
+                createTaskPanel.style.display = "block"
+                addTask.style.display = "none"
+                document.getElementById('addToDo').style.display = 'none';
+                document.getElementById('editToDo').style.display = 'block';})
+            
+                editToDo.addEventListener("click",function() {
+                    var updatedTitle = document.getElementById("toDoTitle").value;
+                    var updatedDetails = document.getElementById("toDoDetails").value;
+                    var updatedDate = document.getElementById("myDateInput").value
+                    tasks[taskId] = {
+                        title: updatedTitle,
+                        details: updatedDetails,
+                        date: updatedDate
+                    };
+                    header1.textContent = updatedTitle;
+                    detailsTitle.textContent = updatedTitle
+                    detailsDescription.textContent = updatedDetails;
+                    if(updatedDate == "") {
+                        secondHeader1.textContent = "No Due Date"
+                    }
+                    else{
+                        secondHeader1.textContent = dateSimplifier(updatedDate)
+                    }
+                    createTaskPanel.style.display = "none"
+                    addTask.style.display = "block"
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+            
+                    document.getElementById('addToDo').style.display = 'block';
+                    document.getElementById('editToDo').style.display = 'none';
+                    document.getElementById("toDoTitle").value = '';
+                    document.getElementById("toDoDetails").value = '';
+                    document.getElementById("myDateInput").value = '';
+                })
+
+
+
+
 
         }
     }
@@ -126,10 +224,15 @@ detailButton.addEventListener('click', function(event){
     event.stopPropagation();
     detailsContainer.style.display = "block"
 }) 
+
 deleteButton.addEventListener('click', function(event) {
     event.stopPropagation();
     newDiv.remove();
+    var taskId = this.closest('.newDivStyle').dataset.taskId;
+    delete tasks[taskId];;
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 });    
+
 closeOut.addEventListener('click', function(event) {
     event.stopPropagation();
     detailsContainer.style.display = "none"
