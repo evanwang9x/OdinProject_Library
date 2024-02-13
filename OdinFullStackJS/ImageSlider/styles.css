@@ -1,0 +1,49 @@
+.body{
+    width: 100%;
+    height: auto;
+}
+.leftArrow{
+    height: 5%;
+    width: 5%;
+}
+.rightArrow{
+    height: 5%;
+    width: 5%;
+}
+.mainImageContainer{
+
+    overflow: hidden;
+}
+.leftArrow:hover, .rightArrow:hover{
+    cursor: pointer;
+}
+.slide{
+    width: 100vw;
+    height: 50vh;
+    overflow: hidden;
+    position: relative
+}
+.dotContainer{
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.dots{
+    justify-content: center;
+    height: 15px;
+    width: 15px;
+    margin: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dots:active{
+    background-color: #000;
+}
+.arrowsAndDots{
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    display: flex;
+}
