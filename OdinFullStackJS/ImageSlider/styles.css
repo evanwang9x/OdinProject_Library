@@ -38,7 +38,7 @@
     border-radius: 50%;
     display: inline-block;
 }
-.dots:active{
+.dots.active{
     background-color: #000;
 }
 .arrowsAndDots{

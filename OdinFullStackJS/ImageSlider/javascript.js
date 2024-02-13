@@ -7,9 +7,9 @@ let currentSlideNumber = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
     for(let i =0; i < slides.length; i++){
-        createDivDots()
+        createDivDots(i)
     }
-    slideDisplay(currentSlideNumber);
+    slideDisplay(0)
 });
 //Current Slide Starts at ZERO not 1 idk why I decided this.
 function slideDisplay(index){
@@ -25,7 +25,21 @@ function slideDisplay(index){
         slide.style.display = "none";
     })
 
+
     index = currentSlideNumber;
+    const dots = dotContainer.querySelectorAll('.dots');
+
+    dots.forEach((dot => {
+        let dotSlideNumber = parseInt(dot.getAttribute('data-slide'), 10)
+        console.log("This is the value of dotSlideNumber: " + dotSlideNumber + " and here is the value of the index: " + index)
+
+        if (dotSlideNumber === index){
+            dot.classList.add('active')
+        }
+        else{
+            dot.classList.remove('active')
+        }
+    }))
     slides[currentSlideNumber].style.display = "block"
 }
 leftArrow.addEventListener("click", function(){
@@ -33,10 +47,10 @@ leftArrow.addEventListener("click", function(){
 })
 rightArrow.addEventListener("click", function(){
     slideDisplay(++currentSlideNumber);
-    console.log(currentSlideNumber)
 })
-function createDivDots(){
+function createDivDots(i){
     var dots = document.createElement('div')
     dots.className = "dots"
+    dots.setAttribute('data-slide', i)
     dotContainer.appendChild(dots)
 }
