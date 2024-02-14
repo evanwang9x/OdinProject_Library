@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<link rel= "stylesheet" href ="styles.css">
+<body class = "body">
+
+
+<form id = "inputForm">
+    <div>    
+        <input id="emailInput" type="email" class="titleInputStyle" placeholder="Title: Enter Email Here" maxlength="40">
+    </div>
+
+    <input id="countryInput" type="text" class="titleInputStyle" placeholder="Title: Enter Country Here" maxlength="40">
+    <input id="zipInput" type="text" class="titleInputStyle" placeholder="Title: Enter Zip Code Here" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+    <input id="passwordInput" type="text" class="titleInputStyle" placeholder="Title: Enter Password Here" maxlength="40">
+    <input id="passwordConfirmation" type="text" class="titleInputStyle" placeholder="Title: Confirm your password" maxlength="40">
+    <button type = "submit">Submit</button>
+</form>
+
+<script src ="javascript.js" async></script>
+
+</body>
